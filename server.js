@@ -14,7 +14,8 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
-  console.log(useragent.parse(req.headers['user-agent']));
+  var osBrowser = useragent.parse(req.headers['user-agent']);
+  console.log(osBrowser.os);
   console.log(req.ip);
   console.log(req.headers['accept-language']);
 });
