@@ -15,13 +15,13 @@ app.use(express.static('public'));
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
   var osBrowser = useragent.parse(req.headers['user-agent']);
-  var operatingSystem = "OS: " + osBrowser.os.family +"."+osBrowser.os.major + "." + osBrowser.os.minor +"."+ osBrowser.os.patch;
-  console.log(operatingSystem);
-  var ipAddress = req.ip.replace("::ffff:", "");
-  console.log(ipAddress);
   var languagePref = req.headers['accept-language'].split(",");
   
-  var answer = 
+  res.send({
+    "OS": "OS: " + osBrowser.os.family +"."+osBrowser.os.major + "." + osBrowser.os.minor +"."+ osBrowser.os.patch,
+    "IP": req.ip.replace("::ffff:", ""),
+    "main lang": languagePref[0]
+  });
 });
 
 // listen for requests :)
